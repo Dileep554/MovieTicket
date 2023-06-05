@@ -1,0 +1,47 @@
+
+            <div class="input-group">
+                <div class="form-outline">
+                  <input type="search" class="form-control" [(ngModel)]="name" placeholder="Search Movie"/>
+                </div>
+                <button type="button" class="btn btn-primary" (click)="getMovie()">
+                  <i class="fa fa-search"></i>
+                </button>
+              </div>
+<table class = "table table-striped">
+    <thead>
+        <tr>
+            <th>Movie Name</th>
+            <th>Theatre Name </th>
+            <th>Tickets Available</th>   
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor= "let movie of movies |paginate:{
+            itemsPerPage: tableSize,
+            currentPage:page};" >
+            <td> {{ movie.key.movieName }} </td>
+            <td> {{ movie.key.theatreName }} </td>
+            <td>{{ movie.totalNoOfTickets}}</td>
+            <td><button class="btn btn-primary" (click)="bookTicket(movie)">Book</button>
+                <button *ngIf="status" class="btn btn-danger" (click)="deleteMovie(movie.key.movieName,movie.key.theatreName)">Delete</button>
+                <button *ngIf="status" class="btn btn-primary" (click)="movieDetails(movie)">Details</button></td>
+            
+    </tr>
+    </tbody>
+</table>
+<div>
+
+    <pagination-controls
+        previousLabel="Prev"
+        nextLabel="Next"
+        (pageChange)="onTableDataChange($event)">
+    </pagination-controls>   
+</div>
+<!-- <mat-paginator #paginator [pageSizeOptions]="[2, 4, 6]" 
+showFirstLastButtons></mat-paginator> -->
+
+
+
+
+
+

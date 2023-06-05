@@ -1,0 +1,75 @@
+<html class="bg-container">
+<div *ngIf="!status" class="col-md-12">
+    <div class="card card-container  bdrop">
+        <ul>
+            <p><b>Movie Name : </b>{{movie.key.movieName}}</p>
+            <p><b>Movie Theatre : </b>{{movie.key.theatreName}}</p>
+            <p><b>Seats Available : </b>{{movie.totalNoOfTickets}}</p>
+        </ul>
+      <form name="form" #f="ngForm">
+          
+        <div class="form-group">
+          <label for="noOfTickets">No Of Tickets</label>
+          <input
+            type="text"
+            class="form-control"
+            name="noOfTickets"
+            [(ngModel)]="form.noOfTickets"
+            required
+            #noOfTickets="ngModel"
+          />
+          <div
+            class="alert alert-danger"
+            role="alert"
+            *ngIf="noOfTickets.errors && f.submitted"
+          >
+          <div *ngIf="noOfTickets.errors['required']">No Of Tickets is required!</div>
+          
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="seatNumber">Seat Number</label>
+          <input
+            type="text"
+            class="form-control"
+            name="seatNumber[]"
+            [(ngModel)]="form.seatNumber"
+            required
+            #seatNumber="ngModel"
+          />
+        </div>
+        <div
+            class="alert alert-danger"
+            role="alert"
+            *ngIf="seatNumber.errors && f.submitted"
+          >
+          <div *ngIf="seatNumber.errors['required']">Please enter seat numbers.</div>
+          
+        </div>
+        <br>
+        <div class="form-group">
+          <button class="btn btn-primary btn-block" (click)="booking()">
+            Book
+          </button> 
+          <button class="btn btn-danger btn-block" (click)="cancel()">
+            Cancel
+          </button><br>
+        </div>
+        <div class="form-group">
+          <!-- <div
+            class="alert alert-danger"
+            role="alert"
+            *ngIf="f.submitted && status!=true"
+          >
+            Login failed: {{ errorMessage }}
+          </div> -->
+        </div>
+      </form>
+  
+      <!-- <div class="alert alert-success" *ngIf="isLoggedIn">
+        Logged in as {{ roles }}.
+      </div> -->
+    </div>
+  </div>
+  <h2 *ngIf="status">Tickets booked successfully!!<a routerLink="/movieslist">Back to List. </a></h2>
+  </html>

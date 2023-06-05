@@ -1,0 +1,15 @@
+<html class="bg-container">
+<div *ngIf="status" class="col-md-12">
+    <div class="card card-container  bdrop">
+        <ul>
+            <p><b>Movie Name : </b>{{movie.key.movieName}}</p>
+            <p><b>Movie Theatre : </b>{{movie.key.theatreName}}</p>
+            <p><b>Total Seats : </b>{{totalSeats}}</p>
+            <p><b>Seats Available : </b>{{movie.totalNoOfTickets}}</p>
+            <p><b>Seats Booked : </b>{{output}}</p>
+        </ul>
+        <a routerLink="/movieslist">Back</a>
+    </div>
+    
+</div>
+</html>
